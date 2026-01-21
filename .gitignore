@@ -1,0 +1,6 @@
+summary.json
+results.json
+comparison-results.json
+go-only-results.json
+laravel-only-results.json
+*.log

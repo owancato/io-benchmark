@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  io-service:
+    build: ./io-service
+    container_name: io-service
+    ports:
+      - "8080:8080"
+    networks:
+      - benchmark-network
+
+  go-api:
+    build: ./go-api
+    container_name: go-api
+    ports:
+      - "8081:8081"
+    depends_on:
+      - io-service
+    networks:
+      - benchmark-network
+
+  laravel-api:
+    build: ./laravel-api
+    container_name: laravel-api
+    ports:
+      - "9000:9000"
+    depends_on:
+      - io-service
+    networks:
+      - benchmark-network
+
+networks:
+  benchmark-network:
+    driver: bridge
